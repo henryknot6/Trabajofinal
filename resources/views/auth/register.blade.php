@@ -14,6 +14,13 @@
                    placeholder="Juan Pérez" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
+        <div>
+            <label for="rol" class="block text-sm font-medium text-gray-700 mb-1">¿Qué deseas hacer?</label>
+            <select id="rol" name="rol" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm py-2.5 px-3 bg-gray-50">
+                <option value="freelancer">Busco empleo (Freelancer)</option>
+                <option value="cliente">Publicar vacantes (Empresa/Cliente)</option>
+            </select>
+        </div>
 
         <div>
             <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Correo Electrónico</label>
