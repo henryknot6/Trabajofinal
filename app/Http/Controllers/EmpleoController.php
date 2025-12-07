@@ -109,4 +109,18 @@ class EmpleoController extends Controller
 
         return redirect()->route('empleos.index')->with('success', 'Empleo actualizado');
     }
+    public function postular(Empleo $empleo)
+{
+    if (Auth::user()->rol !== 'freelancer') {
+        return back()->with('error', 'Solo los freelancers pueden postularse.');
+    }
+
+    if ($empleo->candidatos->contains(Auth::id())) {
+        return back()->with('error', 'Ya te has postulado a esta vacante anteriormente.');
+    }
+
+    $empleo->candidatos()->attach(Auth::id());
+
+    return back()->with('success', '¡Te has postulado correctamente! El reclutador revisará tu perfil.');
+}
 }

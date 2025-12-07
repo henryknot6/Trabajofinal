@@ -39,4 +39,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Habilidad::class, 'usuario_habilidad', 'user_id', 'habilidad_id');
     }
+    public function postulaciones()
+{
+    return $this->belongsToMany(Empleo::class, 'postulaciones', 'user_id', 'empleo_id')
+                ->withTimestamps();
+}
 }

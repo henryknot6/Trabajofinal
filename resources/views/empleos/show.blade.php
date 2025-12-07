@@ -44,11 +44,27 @@
         </a>
         
         @auth
-            @if(Auth::user()->rol === 'freelancer')
-                <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition">
+    @if(Auth::user()->rol === 'freelancer')
+        
+        @if($empleo->candidatos->contains(Auth::user()->id))
+            
+            <button disabled class="bg-gray-400 text-white font-bold py-2 px-4 rounded cursor-not-allowed flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                Ya te has postulado
+            </button>
+        
+        @else
+            
+            <form action="{{ route('empleos.postular', $empleo) }}" method="POST">
+                @csrf
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                     Postularme ahora
                 </button>
-            @endif
+            </form>
+            
+        @endif
+
+    @endif
             
             @if(Auth::id() === $empleo->user_id)
                 

@@ -35,4 +35,9 @@ class Empleo extends Model
     {
         return $this->belongsToMany(Habilidad::class, 'empleo_habilidad', 'empleo_id', 'habilidad_id');
     }
+    public function candidatos()
+{
+    return $this->belongsToMany(User::class, 'postulaciones', 'empleo_id', 'user_id')
+                ->withTimestamps();
+}
 }

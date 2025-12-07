@@ -9,7 +9,7 @@ Route::get('/', [EmpleoController::class, 'index'])->name('home');
 Route::get('/empleos', [EmpleoController::class, 'index'])->name('empleos.index');
 
 Route::middleware('auth')->group(function () {
-    
+    Route::post('/empleos/{empleo}/postular', [EmpleoController::class, 'postular'])->name('empleos.postular');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
