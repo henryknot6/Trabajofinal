@@ -63,4 +63,15 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+    public function show($id)
+    {
+        $user = \App\Models\User::with('habilidades')->findOrFail($id);
+        
+        // Solo mostramos perfiles de freelancers
+        if ($user->rol !== 'freelancer') {
+            return redirect()->route('home')->with('error', 'Este perfil no es público.');
+        }
+
+        return view('profile.show', compact('user'));
+    }
 }

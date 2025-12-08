@@ -22,10 +22,9 @@ Route::middleware('auth')->group(function () {
         Route::delete('/empleos/{empleo}', [EmpleoController::class, 'destroy'])->name('empleos.destroy');
     });
 });
-
-Route::get('/empleos/{empleo}', [EmpleoController::class, 'show'])->name('empleos.show');
+     Route::get('/empleos/{empleo}', [EmpleoController::class, 'show'])->name('empleos.show');
 Route::get('/dashboard', function () {
     return redirect()->route('empleos.index');
 })->middleware(['auth'])->name('dashboard');
-
+Route::get('/freelancer/{id}', [ProfileController::class, 'show'])->name('profile.show');
 require __DIR__.'/auth.php';
