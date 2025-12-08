@@ -1,6 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+@auth
+    @if(Auth::user()->rol === 'freelancer' && empty(Auth::user()->titulo_profesional))
+        <div class="bg-indigo-600 rounded-lg shadow-xl p-6 mb-8 text-white flex justify-between items-center">
+            <div>
+                <h2 class="text-xl font-bold">¡Hola, {{ Auth::user()->name }}! 👋</h2>
+                <p class="mt-1 opacity-90">Tu perfil profesional está incompleto. Complétalo para que las empresas te encuentren.</p>
+            </div>
+            <a href="{{ route('profile.edit') }}" class="bg-white text-indigo-600 px-6 py-2 rounded-full font-bold shadow hover:bg-gray-100 transition">
+                Completar Perfil Ahora
+            </a>
+        </div>
+    @endif
+@endauth
 <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
     
     <div class="lg:col-span-1">

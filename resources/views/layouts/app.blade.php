@@ -25,6 +25,19 @@
                             Empleos
                         </a>
                         @auth
+                            @if(Auth::user()->rol === 'freelancer')
+                            <a href="{{ route('profile.edit') }}" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-bold leading-5 text-indigo-600 hover:text-indigo-800 hover:border-indigo-300 transition duration-150 ease-in-out">
+                                🚀 Crear/Editar Mi Perfil
+                            </a>
+                            @endif
+
+                            @if(Auth::user()->rol === 'cliente')
+                            <a href="{{ route('empleos.create') }}" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-blue-600 hover:border-blue-600 transition duration-150 ease-in-out">
+                                Publicar Oferta
+                            </a>
+                            @endif
+                        @endauth
+                        @auth
                             @if(Auth::user()->rol === 'cliente')
                             <a href="{{ route('empleos.create') }}" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-blue-600 hover:border-blue-600 transition duration-150 ease-in-out">
                                 Publicar Oferta
