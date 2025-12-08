@@ -34,6 +34,12 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
+        if ($request->has('habilidades')) {
+            $request->user()->habilidades()->sync($request->habilidades);
+        } else {
+            $request->user()->habilidades()->detach();
+        }
+
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
